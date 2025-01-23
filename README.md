@@ -52,30 +52,30 @@ Overview of this repo's structure:
 
 ### Cloud Services
 
-| Service                                              | Use                                                            | Cost          |
-| ---------------------------------------------------- | -------------------------------------------------------------- | ------------- |
-| [one.com](https://www.one.com/)            | Hosting my website, DNS, SMTP.                                       | DKK 708/yr  |
-| [Fortinet](https://www.fortinet.com/)            | Not cloud, but still a dependency.                                                  | Free*        |
-| [Let's Encrypt](https://letsencrypt.org/)           | Certificates.                                         | Free          |
-| [GitHub](https://github.com/)                        | Hosting this repository and continuous integration/deployments | Free          |
-|                                                      |                                                                | Total: DKK 708/yr |
+| Service                                     | Use                                                            | Cost              |
+| --------------------------------------------| -------------------------------------------------------------- | ----------------- |
+| [one.com](https://www.one.com/)             | Hosting my website, DNS, SMTP.                                 | DKK 708/yr        |
+| [Fortinet](https://www.fortinet.com/)       | Not cloud, but still a dependency.                             | Free*             |
+| [Let's Encrypt](https://letsencrypt.org/)   | Certificates.                                                  | Free              |
+| [GitHub](https://github.com/)               | Hosting this repository and continuous integration/deployments | Free              |
+|                                             |                                                                | Total: DKK 708/yr |
 
-*Licence provided by my employer
+*Licence provided by my employer, but would otherwise be *expensive*, or have less features
 
 ### Internet
 
-| Provider | Plan             | Speed (Down) | Speed (Up) | Latency        | Cost          |
-| -------- | ---------------- | ------------ | ------------ | ---------- | -------------- |
-| Norlys   | Fiber 300 Basic | 300 Mbps     | 300 Mbps   | ~ 10ms | Free*        |
-|          |                  |              |            |                | Total: N/A |
+| Provider | Plan             | Speed (Down) | Speed (Up) | Latency | Cost       |
+| -------- | ---------------- | ------------ | -----------| ------- | -----------|
+| Norlys   | Fiber 300 Basic  | 300 Mbps     | 300 Mbps   | ~ 10ms  | Free*      |
+|          |                  |              |            |         | Total: N/A |
 
-*Cost covered by my employer
+*Cost covered by my employer, but would otherwise be about DKK 300/mo
 
 ### Electricity
 
-| Item    | Consumption  | Rate      | Cost          |
-| ------- | ------------ | --------- | ------------- |
-| Homelab | tbd | variable | N/A        |
+| Item    | Consumption  | Rate      | Cost       |
+| ------- | ------------ | --------- | ---------- |
+| Homelab | tbd          | variable  | N/A        |
 |         |              |           | Total: N/A |
 
 ---
@@ -84,9 +84,9 @@ Overview of this repo's structure:
 
 ### Computing
 
-| Count | Device                     | OS Disk Size | Data Disk Size      | Ram   | Operating System | Purpose                        |
-| ----- | -------------------------- | ------------ | ------------------- | ----- | ---------------- | ------------------------------ |
-| 1     | Raspberry Pi 5b             | 128GB SD Card | N/A        | 8GB | Debian 12 | Docker host    |
+| Count | Device                     | OS Disk Size  | Data Disk Size | Ram   | Operating System | Purpose        |
+| ----- | -------------------------- | ------------- | -------------- | ----- | ---------------- | -------------- |
+| 1     | Raspberry Pi 5b            | 128GB SD Card | N/A            | 8GB   | Debian 12        | Docker host    |
 
 ### Networking
 
@@ -102,16 +102,16 @@ Overview of this repo's structure:
 
 Thanks to everyone in the homelab community.
 
-As you might already have seen, I've taken a ton of inspiration from [MacroPower](https://github.com/MacroPower/), so thanks to MacroPower for making great [repos](https://github.com/MacroPower/homelab/).
+As you might already have seen, I've taken a ton of inspiration from [MacroPower](https://github.com/MacroPower/), so thanks MacroPower for making great [repos](https://github.com/MacroPower/homelab/).
 
 ---
 
 ## 🔏 License
 
-This project is licensed under the MIT license, primarily because it's simple enough to understand, and so you can do whatever you want.
+This project is licensed under the MIT license, primarily because it's simple enough for me to understand, and so you can do whatever you want.
 
 For more details, see [LICENSE](./LICENSE).
 
-Ultimately though, I have a WTFPL mindset about any content produced by/for myself. If you like anything you see here, feel free to use it however you want (yes, that includes the peepos), just don't sue me if my code blows up your cluster. 
+Ultimately though, I have a WTFPL mindset about any content produced by/for myself. If you like anything you see here, feel free to use it however you want. 
 
 ---
