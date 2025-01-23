@@ -39,11 +39,11 @@ Overview of this repo's structure:
 
 ```sh
 📁 containers  # Docker applications
-├── 📁 HomeAssistant      # Configurations for HomeAssistant
-├── 📁 PiHole             # Configurations for PiHole
-├── 📁 UnifiController    # Configurations for UnifiController
-├── 📁 Watchtower         # Configurations for Watchtower
-└── 📁 Zabbix             # Configurations for Zabbix
+├── 📁 HomeAssistant      # Configuration(s) for HomeAssistant
+├── 📁 PiHole             # Configuration(s) for PiHole
+├── 📁 UnifiController    # Configuration(s) for UnifiController
+├── 📁 Watchtower         # Configuration(s) for Watchtower
+└── 📁 Zabbix             # Configuration(s) for Zabbix
 ```
 
 ---
