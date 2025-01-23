@@ -1,0 +1,56 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+http:
+  server_port: 8123
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - 10.77.2.0/24 # local network
+    - 172.16.0.0/12 # docker network
+    - 172.30.33.0/24 # nginx proxy i think
+  ssl_certificate: /ssl/fullchain1.pem
+  ssl_key: /ssl/privkey1.pem
+
+  sensor:
+  - platform: template
+    sensors:
+      eloverblik_energy_hourly:
+        unique_id: eloverblik_energy_hourly
+        value_template: >
+          {{ [
+            states('sensor.eloverblik_energy_0_1')|float(0),
+            states('sensor.eloverblik_energy_1_2')|float(0),
+            states('sensor.eloverblik_energy_2_3')|float(0),
+            states('sensor.eloverblik_energy_3_4')|float(0),
+            states('sensor.eloverblik_energy_4_5')|float(0),
+            states('sensor.eloverblik_energy_5_6')|float(0),
+            states('sensor.eloverblik_energy_6_7')|float(0),
+            states('sensor.eloverblik_energy_7_8')|float(0),
+            states('sensor.eloverblik_energy_8_9')|float(0),
+            states('sensor.eloverblik_energy_9_10')|float(0),
+            states('sensor.eloverblik_energy_10_11')|float(0),
+            states('sensor.eloverblik_energy_11_12')|float(0),
+            states('sensor.eloverblik_energy_12_13')|float(0),
+            states('sensor.eloverblik_energy_13_14')|float(0),
+            states('sensor.eloverblik_energy_14_15')|float(0),
+            states('sensor.eloverblik_energy_15_16')|float(0),
+            states('sensor.eloverblik_energy_16_17')|float(0),
+            states('sensor.eloverblik_energy_17_18')|float(0),
+            states('sensor.eloverblik_energy_18_19')|float(0),
+            states('sensor.eloverblik_energy_19_20')|float(0),
+            states('sensor.eloverblik_energy_20_21')|float(0),
+            states('sensor.eloverblik_energy_21_22')|float(0),
+            states('sensor.eloverblik_energy_22_23')|float(0),
+            states('sensor.eloverblik_energy_23_24')|float(0)
+          ] | tojson }}
