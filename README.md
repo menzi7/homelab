@@ -100,9 +100,11 @@ Overview of this repo's structure:
 
 ## 🤝 Thanks
 
-Thanks to everyone in the homelab community.
+Thanks to everyone in the homelab community, on the [homelab subreddit](https://www.reddit.com/r/homelab/) and on various forums that I've come to for help.
 
 As you might already have seen, I've taken a ton of inspiration from [MacroPower](https://github.com/MacroPower/), so thanks MacroPower for making great [repos](https://github.com/MacroPower/homelab/).
+
+And of course, all of our favourite: ChatGPT
 
 ---
 
