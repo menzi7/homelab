@@ -38,12 +38,12 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 Overview of this repo's structure:
 
 ```sh
-📁 containers  # Docker applications
-├── 📁 HomeAssistant      # Configuration(s) for HomeAssistant
-├── 📁 PiHole             # Configuration(s) for PiHole
-├── 📁 UnifiController    # Configuration(s) for UnifiController
-├── 📁 Watchtower         # Configuration(s) for Watchtower
-└── 📁 Zabbix             # Configuration(s) for Zabbix
+📁 containers     # Docker applications
+├──📁 HomeAssistant      # Configuration(s) for HomeAssistant
+├──📁 PiHole             # Configuration(s) for PiHole
+├──📁 UnifiController    # Configuration(s) for UnifiController
+├──📁 Watchtower         # Configuration(s) for Watchtower
+└──📁 Zabbix             # Configuration(s) for Zabbix
 ```
 
 ---
