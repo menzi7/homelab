@@ -1,0 +1,20 @@
+services:
+  unifi-controller:
+    container_name: unificontroller
+    image: jacobalberty/unifi:latest
+    ports:
+      - "8080:8080"       # Device/Controller communication
+      - "9443:9443"       # Web interface
+      #- "8880:8880"       # HTTP portal redirection
+      #- "8843:8843"       # HTTPS portal
+      #- "6789:6789"       # Speed test
+      - "3478:3478/udp"   # STUN
+      - "10001:10001/udp" # Device discovery
+    environment:
+      - TZ="Europe/Berlin"
+      - UNIFI_HTTPS_PORT=9443 # Change web interface port to 9443
+    volumes:
+      - ./data:/unifi/data
+      - ./log:/unifi/log
+      - ./cert:/unifi/cert
+    restart: unless-stopped
