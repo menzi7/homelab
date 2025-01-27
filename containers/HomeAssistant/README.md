@@ -39,6 +39,7 @@ server {
     }
 }
 ```
-<br>
-Certbot did a dry-run successfully. And anyone trying to connect with port 80 gets 403 forbidden, and 'I''m still able to access homeassistant remotely and locally with ssl
+To secure port 80, further, I applied [this](https://community.fortinet.com/t5/FortiGate/Technical-Tip-How-to-allow-Let-s-Encrypt-traffic-through-the/ta-p/334464) on the firewall. Only allowing ACME challenges, and blocking all other HTTP requests
 
+<br>
+Certbot can successfully renew my certificate, I can access Homeassistant remotely and locally with said SSL certificate. Anyone trying to connect with port 80 will be blocked by my firewall, and if, against all odds, they get through the firewall, the nginx will return 403 forbidden.
