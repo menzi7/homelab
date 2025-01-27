@@ -1,7 +1,9 @@
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: beatkind/watchtower
     container_name: watchtower
+    secrets:
+      - watchtower_secret
     restart: unless-stopped
     dns: 8.8.8.8
     volumes:
@@ -18,5 +20,9 @@ services:
       WATCHTOWER_NOTIFICATION_EMAIL_SERVER: send.one.com
       WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: 587
       WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: watchtower@menzi.dk
-      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: REDACTED
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: "/run/secrets/watchtower_secret"
       WATCHTOWER_NOTIFICATION_EMAIL_DELAY: 120
+
+secrets:
+  watchtower_secret:
+    file: watchtower_secret.txt
