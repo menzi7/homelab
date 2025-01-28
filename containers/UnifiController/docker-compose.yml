@@ -13,6 +13,9 @@ services:
     environment:
       - TZ="Europe/Berlin"
       - UNIFI_HTTPS_PORT=9443 # Change web interface port to 9443
+      - CERT_IS_CHAIN=true
+      - CERTNAME=fullchain.pem
+      - CERT_PRIVATE_NAME=privkey.pem
     volumes:
       - ./data:/unifi/data
       - ./log:/unifi/log
