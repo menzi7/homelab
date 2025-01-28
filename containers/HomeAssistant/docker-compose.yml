@@ -6,7 +6,7 @@ services:
       - /home/tme/containers/HomeAssistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-      - /etc/letsencrypt/archive/pi.menzi.dk:/ssl:ro
+      - ./cert:/ssl:ro
     restart: unless-stopped
     privileged: true
     network_mode: host

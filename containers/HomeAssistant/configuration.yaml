@@ -19,8 +19,8 @@ http:
     - 10.77.2.0/24 # local network
     - 172.16.0.0/12 # docker network
     - 172.30.33.0/24 # nginx proxy i think
-  ssl_certificate: /ssl/fullchain1.pem
-  ssl_key: /ssl/privkey1.pem
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
 
   sensor:
   - platform: template
