@@ -64,6 +64,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - ./zbx_env/etc/ssl/nginx:/etc/ssl/nginx:ro
       - ./zbx_env/usr/share/zabbix/modules/:/usr/share/zabbix/modules/:ro
+      - ./zbx_env/etc/nginx/nginx_ssl.conf:/etc/nginx/http.d/nginx_ssl.conf
     deploy:
       resources:
         limits:
