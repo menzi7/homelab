@@ -16,6 +16,7 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 ### Infrastructure management
 
 - Same way I'm managing everything else: barely.
+- [Portainer](https://www.portainer.io/): Container management, deployment & troubleshooting.
 
 ### Networking
 
@@ -41,6 +42,7 @@ Overview of this repo's structure:
 📁 containers     # Docker applications
 ├──📁 HomeAssistant      # Configuration(s) for HomeAssistant
 ├──📁 PiHole             # Configuration(s) for PiHole
+├──📁 Portainer          # Configuration(s) for Portainer
 ├──📁 UnifiController    # Configuration(s) for UnifiController
 ├──📁 Watchtower         # Configuration(s) for Watchtower
 └──📁 Zabbix             # Configuration(s) for Zabbix
