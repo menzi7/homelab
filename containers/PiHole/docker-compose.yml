@@ -2,23 +2,14 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    secrets:
-      - pihole_secret
     network_mode: "host"
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "88:88/tcp"
     environment:
       TZ: 'Europe/Berlin'
-      WEB_PORT: '88'
-      WEBPASSWORD_FILE: '/run/secrets/pihole_secret'
     # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
     restart: unless-stopped
-
-secrets:
-  pihole_secret:
-    file: pihole_secret.txt
