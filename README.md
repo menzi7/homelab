@@ -26,6 +26,7 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 ### Security
 
 - [Fortinet](https://www.fortinet.com/): FortiGate, IPS, WAF, VPN.
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden): Self-hosted password manager.
 
 ### Observability
 
@@ -44,6 +45,7 @@ Overview of this repo's structure:
 ├──📁 PiHole             # Configuration(s) for PiHole
 ├──📁 Portainer          # Configuration(s) for Portainer
 ├──📁 UnifiController    # Configuration(s) for UnifiController
+├──📁 Vaultwarden        # Configuration(s) for Vaultwarden
 ├──📁 Watchtower         # Configuration(s) for Watchtower
 └──📁 Zabbix             # Configuration(s) for Zabbix
 ```

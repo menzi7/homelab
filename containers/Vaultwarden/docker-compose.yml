@@ -1,0 +1,21 @@
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    dns: 8.8.8.8
+    ports:
+      - 7443:80
+    environment:
+      DOMAIN: "https://pi.menzi.dk:7443"
+      ROCKET_TLS: '{certs="/ssl/fullchain.pem",key="/ssl/privkey.pem"}'
+      SIGNUPS_ALLOWED: "false"
+      SMTP_HOST: send.one.com
+      SMTP_FROM: vaultwarden@menzi.dk
+      SMTP_PORT: 587
+      SMTP_SECURITY: starttls
+      SMTP_USERNAME: vaultwarden@menzi.dk
+      SMTP_PASSWORD: <password>
+    volumes:
+      - ./data:/data
+      - ./cert:/ssl:ro
+    restart: unless-stopped
