@@ -94,11 +94,11 @@ Overview of this repo's structure:
 
 ### Networking
 
-| Count | Device                       | Eth Interfaces | SFP Interfaces | Platform | Purpose                   |
-| ----- | ---------------------------- | -------------- | -------------- | -------- | ------------------------- |
-| 1     | FortiGate 60F              | 10x 1G        | N/A         | FortiOS | Firewall and Router |
-| 1     | Aruba 2530 24G PoE+   | 24x 1G          | 4x 1G           | ArubaOS-Switch | L2 PoE+ Switch       |
-| 2     | Ubiquiti Unifi U6+ | 1x 1G            | N/A        | UniFi OS | WiFi 6 Access Point     |
+| Count | Device                  | Eth Interfaces | SFP Interfaces | Platform       | Purpose              |
+| ----- | ------------------------| -------------- | -------------- | -------------- | -------------------- |
+| 1     | FortiGate 60F           | 10x 1G         | N/A            | FortiOS        | Firewall and Router  |
+| 1     | Aruba 2530 24G PoE+     | 24x 1G         | 4x 1G          | ArubaOS-Switch | L2 PoE+ Switch       |
+| 1     | Ubiquiti Unifi U6+      | 1x 1G          | N/A            | UniFi OS       | WiFi 6 Access Point  |
 
 ---
 
