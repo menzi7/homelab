@@ -13,3 +13,13 @@ volumes:
 ```
 
 More info about the *./cert* folder [here](/lab/certbot/README.md)
+
+
+## Discovery
+Inform host needs to be overridden, because the controller sends out the container IP, which isn't reachable from other devices.  
+```settings > advanced > inform host > override > type the hostname or IP of the docker host.```
+
+#### Can't discover across vlans.
+* ssh into AP using the default credentials
+* type ```set-inform http://x.x.x.x:8080/inform``` either IP or hostname of the controller
+* click adopt in the controller
