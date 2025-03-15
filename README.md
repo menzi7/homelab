@@ -16,7 +16,6 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 ### Infrastructure management
 
 - Same way I'm managing everything else: barely.
-- [Portainer](https://www.portainer.io/): Container management, deployment & troubleshooting.
 
 ### Networking
 
@@ -31,6 +30,7 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 ### Observability
 
 - [Zabbix](https://www.zabbix.com/): Monitoring, visualization and alerts.
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma): Monitoring tool.
 - [Fortinet](https://www.fortinet.com/): Network logs.
 
 ---
@@ -43,8 +43,8 @@ Overview of this repo's structure:
 📁 containers     # Docker applications
 ├──📁 HomeAssistant      # Configuration(s) for HomeAssistant
 ├──📁 PiHole             # Configuration(s) for PiHole
-├──📁 Portainer          # Configuration(s) for Portainer
 ├──📁 UnifiController    # Configuration(s) for UnifiController
+├──📁 Uptime-Kuma        # Configuration(s) for Uptime-Kuma
 ├──📁 Vaultwarden        # Configuration(s) for Vaultwarden
 ├──📁 Watchtower         # Configuration(s) for Watchtower
 └──📁 Zabbix             # Configuration(s) for Zabbix
