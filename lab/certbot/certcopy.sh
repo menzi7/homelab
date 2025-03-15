@@ -7,6 +7,7 @@ ZABBIX_DIR="/home/tme/containers/Zabbix/zbx_env/etc/ssl/nginx"
 HA_DIR="/home/tme/containers/HomeAssistant/cert"
 PORTAINER_DIR="/home/tme/containers/Portainer/data/certs"
 VAULTWARDEN_DIR="/home/tme/containers/Vaultwarden/cert"
+UPTIME-KUMA_DIR="/home/tme/containers/Uptime-Kuma/cert"
 
 # copy newest cert to container folder
 
@@ -36,3 +37,8 @@ docker restart portainer
 cp -f $(ls -t ${SOURCE_DIR}/fullchain*.pem | head -n 1) ${VAULTWARDEN_DIR}/fullchain.pem
 cp -f $(ls -t ${SOURCE_DIR}/privkey*.pem | head -n 1) ${VAULTWARDEN_DIR}/privkey.pem
 docker restart vaultwarden
+
+# Uptime-Kuma
+cp -f $(ls -t ${SOURCE_DIR}/fullchain*.pem | head -n 1) ${UPTIME-KUMA_DIR}/fullchain.pem
+cp -f $(ls -t ${SOURCE_DIR}/privkey*.pem | head -n 1) ${UPTIME-KUMA_DIR}/privkey.pem
+docker restart uptime-kuma

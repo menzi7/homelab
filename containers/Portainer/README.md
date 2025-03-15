@@ -1,1 +1,1 @@
-Trying out portainer
+Stopped for now.
