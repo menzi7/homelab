@@ -1,4 +1,53 @@
-## The "S" in HTTPS stands for "sucks"
+# Updating a containerized Zabbix
+
+### Step 1: Backup
+`docker exec -it zabbix-mysql sh -c 'mariadb-dump -u zabbix -p zabbix' > zabbix_backup.sql`
+
+It might be easier to enter the container, creating the backup and then copying it out, but the end result is the same.
+
+> **_NOTE:_**  If MariaDB is older than 10.5, use `mysqldump` instead of `mariadb-dump`
+
+### Step 2: Update docker-compose.yml
+Change the images to the new version and save the file.
+e.g. `image: zabbix/zabbix-server-mysql:alpine-7.0-latest`
+becomes: `image: zabbix/zabbix-server-mysql:alpine-7.2-latest`
+
+### Step 3: Upgrade MariaDB
+1. First, down all the zabbix containers 
+`docker compose down`
+2. Then only start the SQL server 
+`docker compose up -d mysql-server`
+3. Enter the container 
+`docker exec -it zabbix-mysql sh`
+4. Start the upgrade by running:
+`mariadb-upgrade -p`
+It will prompt for the root password. If the env_var isn't changed, its 'root_pwd'
+
+> **_NOTE:_**  If MariaDB is older than 10.5, use `mysql_upgrade` instead of `mariadb-upgrade`
+
+### Step 3: Start the Zabbix server
+1. Start the Zabbix server
+`docker compose up -d zabbix-server`
+2. Verify thats it's upgrading the database by checking logs
+`docker logs zabbix-server`
+It should print
+```
+completed 1% of database upgrade
+completed 1% of database upgrade
+completed 1% of database upgrade
+and so on...
+```  
+
+### Step 4: Start the web service and agent or troubleshoot
+If the database upgrade was a success, start the other services
+`docker compose up -d zabbix-agent`
+`docker compose up -d zabbix-web`
+
+If not, troubleshoot the error(s) found in either the zabbix server logs or sql logs.  
+
+<br><br><br>
+
+# The "S" in HTTPS stands for "sucks"
 But only if you're an idiot like me.
 
 First of all, thanks to [u/curious-jorge-IT](https://www.reddit.com/r/zabbix/comments/17aujk3/configuring_https_on_zabbix_deployment_via_docker/) on reddit, if it wasn't for him, I would probably have given up, and still be pressing "Advanced" and "Proceed". 
