@@ -1,6 +1,6 @@
 services:
   zabbix-server:
-    image: zabbix/zabbix-server-mysql:alpine-7.0-latest
+    image: zabbix/zabbix-server-mysql:alpine-7.2-latest
     container_name: zabbix-server
     restart: always
     ports:
@@ -53,11 +53,10 @@ services:
       com.zabbix.os: "alpine"
 
   zabbix-web-nginx-mysql:
-    image: zabbix/zabbix-web-nginx-mysql:alpine-7.0-latest
+    image: zabbix/zabbix-web-nginx-mysql:alpine-7.2-latest
     container_name: zabbix-web
     restart: always
     ports:
-      - "8880:8080"
       - "8443:8443"
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -105,11 +104,11 @@ services:
       com.zabbix.os: "alpine"
 
   mysql-server:
-    image: mariadb:10.5
+    image: mariadb:11.5
     container_name: zabbix-mysql
     restart: always
     command:
-      - mysqld
+      - mariadbd
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_bin
       - --skip-character-set-client-handshake
@@ -131,7 +130,7 @@ services:
         - mysql-databasse
 
   zabbix-agent:
-    image: zabbix/zabbix-agent:alpine-7.0-latest
+    image: zabbix/zabbix-agent:alpine-7.2-latest
     container_name: zabbix-agent
     restart: always
     ports:
