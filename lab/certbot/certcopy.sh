@@ -5,9 +5,7 @@ SOURCE_DIR="/etc/letsencrypt/archive/pi.menzi.dk"
 UNIFI_DIR="/home/tme/containers/UnifiController/cert"
 ZABBIX_DIR="/home/tme/containers/Zabbix/zbx_env/etc/ssl/nginx"
 HA_DIR="/home/tme/containers/HomeAssistant/cert"
-PORTAINER_DIR="/home/tme/containers/Portainer/data/certs"
 VAULTWARDEN_DIR="/home/tme/containers/Vaultwarden/cert"
-HOMEPAGE_DIR="/home/tme/containers/Homepage/cert"
 
 # copy newest cert to container folder
 
@@ -28,17 +26,7 @@ cp -f $(ls -t ${SOURCE_DIR}/fullchain*.pem | head -n 1) ${HA_DIR}/fullchain.pem
 cp -f $(ls -t ${SOURCE_DIR}/privkey*.pem | head -n 1) ${HA_DIR}/privkey.pem
 docker restart homeassistant
 
-# Portainer
-cp -f $(ls -t ${SOURCE_DIR}/fullchain*.pem | head -n 1) ${PORTAINER_DIR}/cert.pem
-cp -f $(ls -t ${SOURCE_DIR}/privkey*.pem | head -n 1) ${PORTAINER_DIR}/key.pem
-docker restart portainer
-
 # Vaultwarden
 cp -f $(ls -t ${SOURCE_DIR}/fullchain*.pem | head -n 1) ${VAULTWARDEN_DIR}/fullchain.pem
 cp -f $(ls -t ${SOURCE_DIR}/privkey*.pem | head -n 1) ${VAULTWARDEN_DIR}/privkey.pem
 docker restart vaultwarden
-
-# Uptime-Kuma
-cp -f $(ls -t ${SOURCE_DIR}/fullchain*.pem | head -n 1) ${HOMEPAGE_DIR}/fullchain.pem
-cp -f $(ls -t ${SOURCE_DIR}/privkey*.pem | head -n 1) ${HOMEPAGE_DIR}/privkey.pem
-docker restart homepage

@@ -30,7 +30,6 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 ### Observability
 
 - [Zabbix](https://www.zabbix.com/): Monitoring, visualization and alerts.
-- [Uptime Kuma](https://github.com/louislam/uptime-kuma): Monitoring tool.
 - [Fortinet](https://www.fortinet.com/): Network logs.
 
 ---
@@ -44,7 +43,6 @@ Overview of this repo's structure:
 ├──📁 HomeAssistant      # Configuration(s) for HomeAssistant
 ├──📁 PiHole             # Configuration(s) for PiHole
 ├──📁 UnifiController    # Configuration(s) for UnifiController
-├──📁 Uptime-Kuma        # Configuration(s) for Uptime-Kuma
 ├──📁 Vaultwarden        # Configuration(s) for Vaultwarden
 ├──📁 Watchtower         # Configuration(s) for Watchtower
 └──📁 Zabbix             # Configuration(s) for Zabbix
