@@ -1,3 +1,5 @@
+![Zabbix](https://i.postimg.cc/Y991FmPH/11-June-15-09-21-firefox.png)
+
 # Updating a containerized Zabbix
 
 ### Step 1: Backup
