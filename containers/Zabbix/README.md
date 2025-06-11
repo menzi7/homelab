@@ -16,7 +16,7 @@ becomes: `image: zabbix/zabbix-server-mysql:alpine-7.2-latest`
 1. First, down all the zabbix containers 
 `docker compose down`
 2. Then only start the SQL server 
-`docker compose up -d mysql-server`
+`docker compose up -d zabbix-mysql`
 3. Enter the container 
 `docker exec -it zabbix-mysql sh`
 4. Start the upgrade by running:

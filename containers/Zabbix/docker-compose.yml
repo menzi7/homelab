@@ -30,7 +30,7 @@ services:
       - MYSQL_PASSWORD
       - MYSQL_ROOT_PASSWORD
     depends_on:
-      - mysql-server
+      - zabbix-mysql
     networks:
       zbx_net_backend:
         aliases:
@@ -52,7 +52,7 @@ services:
       com.zabbix.dbtype: "mysql"
       com.zabbix.os: "alpine"
 
-  zabbix-web-nginx-mysql:
+  zabbix-web:
     image: zabbix/zabbix-web-nginx-mysql:alpine-7.2-latest
     container_name: zabbix-web
     restart: always
@@ -77,7 +77,7 @@ services:
       - MYSQL_USER
       - MYSQL_PASSWORD
     depends_on:
-      - mysql-server
+      - zabbix-mysql
       - zabbix-server
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/"]
@@ -103,7 +103,7 @@ services:
       com.zabbix.dbtype: "mysql"
       com.zabbix.os: "alpine"
 
-  mysql-server:
+  zabbix-mysql:
     image: mariadb:11.5
     container_name: zabbix-mysql
     restart: always
