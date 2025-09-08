@@ -15,6 +15,9 @@ e.g. `image: zabbix/zabbix-server-mysql:alpine-7.0-latest`
 becomes: `image: zabbix/zabbix-server-mysql:alpine-7.2-latest`
 
 ### Step 3: Upgrade MariaDB
+
+> **_NOTE:_**  This step is optional, if your DB is compatible with the version of Zabbix that you're upgrading to. Check the requirements before upgrading.
+
 1. First, down all the zabbix containers 
 `docker compose down`
 2. Then only start the SQL server 

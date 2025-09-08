@@ -1,6 +1,6 @@
 services:
   zabbix-server:
-    image: zabbix/zabbix-server-mysql:alpine-7.2-latest
+    image: zabbix/zabbix-server-mysql:alpine-7.4-latest
     container_name: zabbix-server
     restart: always
     ports:
@@ -53,7 +53,7 @@ services:
       com.zabbix.os: "alpine"
 
   zabbix-web:
-    image: zabbix/zabbix-web-nginx-mysql:alpine-7.2-latest
+    image: zabbix/zabbix-web-nginx-mysql:alpine-7.4-latest
     container_name: zabbix-web
     restart: always
     ports:
@@ -130,7 +130,7 @@ services:
         - mysql-databasse
 
   zabbix-agent:
-    image: zabbix/zabbix-agent:alpine-7.2-latest
+    image: zabbix/zabbix-agent:alpine-7.4-latest
     container_name: zabbix-agent
     restart: always
     ports:
