@@ -5,7 +5,7 @@ SOURCE_DIR="/etc/letsencrypt/live/menzi.dk"
 DOCKGE_DIR="/opt/dockge/cert"
 UNIFI_DIR="/opt/containers/unifiController/cert"
 ZABBIX_DIR="/opt/containers/zabbix/zbx_env/etc/ssl/nginx"
-HA_DIR="/opt/containers/homeAssistant/cert"
+HA_DIR="/opt/containers/homeassistant/cert"
 VAULTWARDEN_DIR="/opt/containers/vaultwarden/cert"
 ACTUAL_DIR="/opt/containers/actual/data"
 
