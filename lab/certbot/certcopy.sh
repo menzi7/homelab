@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory variables
-SOURCE_DIR="/etc/letsencrypt/archive/pi.menzi.dk"
+SOURCE_DIR="/etc/letsencrypt/live/menzi.dk"
 DOCKGE_DIR="/opt/dockge/cert"
 UNIFI_DIR="/opt/containers/unifiController/cert"
 ZABBIX_DIR="/opt/containers/zabbix/zbx_env/etc/ssl/nginx"
