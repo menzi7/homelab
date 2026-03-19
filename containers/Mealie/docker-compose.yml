@@ -18,7 +18,7 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: Europe/Copenhagen
-      BASE_URL: https://pi.menzi.dk
+      BASE_URL: https://pi.menzi.dk:5443/
       SMTP_HOST: send.one.com
       SMTP_PORT: 465
       SMTP_FROM_EMAIL: mealie@menzi.dk
