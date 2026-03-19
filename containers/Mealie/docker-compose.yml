@@ -1,0 +1,41 @@
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+    ports:
+        - "5443:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    volumes:
+      - mealie-data:/app/data/
+      - ./cert:/cert:ro
+    environment:
+      # Set Backend ENV Variables Here
+      ALLOW_SIGNUP: "false"
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Copenhagen
+      BASE_URL: https://pi.menzi.dk
+      SMTP_HOST: send.one.com
+      SMTP_PORT: 465
+      SMTP_FROM_EMAIL: mealie@menzi.dk
+      SMTP_AUTH_STRATEGY: SSL
+      SMTP_USER: mealie@menzi.dk
+      SMTP_PASSWORD_FILE: /run/secrets/mealie-email
+      TLS_CERTIFICATE_PATH: /cert/ssl.crt
+      TLS_PRIVATE_KEY_PATH: /cert/ssl.key
+      OPENAI_API_KEY_FILE: /run/secrets/openai-api-key
+    secrets:
+      - mealie-email
+      - openai-api-key
+volumes:
+  mealie-data:
+
+secrets:
+  mealie-email:
+    file: mealie-email.txt
+  openai-api-key:
+    file: openai-api-key.txt
