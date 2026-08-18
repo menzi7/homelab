@@ -6,7 +6,7 @@ services:
     ports:
       - 7443:80
     environment:
-      DOMAIN: "https://pi.menzi.dk:7443"
+      DOMAIN: https://pi.menzi.dk:7443
       ROCKET_TLS: '{certs="/ssl/fullchain.pem",key="/ssl/privkey.pem"}'
       SIGNUPS_ALLOWED: "false"
       SMTP_HOST: send.one.com
@@ -19,3 +19,4 @@ services:
       - ./data:/data
       - ./cert:/ssl:ro
     restart: unless-stopped
+networks: {}

@@ -9,25 +9,11 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-http:
-  server_port: 8123
-  ip_ban_enabled: true
-  login_attempts_threshold: 3
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 127.0.0.1
-    - 10.77.2.0/24 # local network
-    - 172.16.0.0/12 # docker network
-    - 172.30.33.0/24 # nginx proxy i think
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
-
-  sensor:
-  - platform: template
-    sensors:
-      eloverblik_energy_hourly:
+template:
+  - sensor:
+      - name: "Eloverblik Energy Hourly"
         unique_id: eloverblik_energy_hourly
-        value_template: >
+        state: >
           {{ [
             states('sensor.eloverblik_energy_0_1')|float(0),
             states('sensor.eloverblik_energy_1_2')|float(0),
@@ -54,3 +40,65 @@ http:
             states('sensor.eloverblik_energy_22_23')|float(0),
             states('sensor.eloverblik_energy_23_24')|float(0)
           ] | tojson }}
+
+rest:
+  - scan_interval: 3600
+    resource: "https://pi.menzi.dk:5443/api/households/mealplans?orderBy=date&orderDirection=asc"
+    headers:
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb25nX3Rva2VuIjp0cnVlLCJpZCI6IjBmNzYwZmVmLTU1OWYtNDliMC1iOWY0LTM2ZDI3N2MyNzIzZCIsIm5hbWUiOiJIb21lQXNzaXN0YW50MiIsImludGVncmF0aW9uX2lkIjoiZ2VuZXJpYyIsImV4cCI6MTkyOTA5MTc1Nn0.jpoG28NUGRD7qrleoPrATmldD-AlnrX6uwPZbF5k2hk"
+    params:
+      start_date: >
+        {{ now().strftime('%Y-%m-%d') }}
+    sensor:
+      - name: "Mealie Raw Mealplan"
+        value_template: "{{ value_json.total }}"
+        json_attributes:
+          - items
+
+template:
+  - sensor:
+      - name: "Mealie Weekly Overview"
+        state: >
+          {% set items = state_attr('sensor.mealie_raw_mealplan', 'items') %}
+          {{ items | length if items else 0 }}
+
+        attributes:
+
+          meals: >
+            {% set items = state_attr('sensor.mealie_raw_mealplan', 'items') %}
+            {% if not items %}
+              {}
+            {% else %}
+              {% set ns = namespace(days={}) %}
+              {% for item in items %}
+                {% set date = item.date %}
+                {% set name = item.recipe.name if item.recipe else item.title %}
+                {% set recipe_id = item.recipe.id if item.recipe else item.recipeId %}
+                {% if date not in ns.days %}
+                  {% set ns.days = ns.days | combine({ date: [] }) %}
+                {% endif %}
+                {% set ns.days = ns.days | combine({
+                    date: ns.days[date] + [{
+                      "type": item.entryType,
+                      "name": name,
+                      "recipe_id": recipe_id
+                    }]
+                }) %}
+              {% endfor %}
+              {{ ns.days }}
+            {% endif %}
+
+          todays_recipe_ids: >
+            {% set meals = this.attributes.meals %}
+            {% set today = now().strftime('%Y-%m-%d') %}
+            {% if meals and today in meals %}
+              {% set ns = namespace(result={}) %}
+              {% for meal in meals[today] %}
+                {% if meal.recipe_id %}
+                  {% set ns.result = ns.result | combine({ meal.type: meal.recipe_id }) %}
+                {% endif %}
+              {% endfor %}
+              {{ ns.result }}
+            {% else %}
+              {}
+            {% endif %}

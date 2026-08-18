@@ -1,9 +1,9 @@
 services:
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
-      - /opt/containers/homeAssistant:/config
+      - /opt/containers/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
       - ./cert:/ssl:ro
@@ -12,3 +12,4 @@ services:
     network_mode: host
     healthcheck:
       test: curl -k https://localhost:8123 || exit 1
+networks: {}

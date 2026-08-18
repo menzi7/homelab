@@ -4,7 +4,7 @@ services:
     container_name: zabbix-server
     restart: always
     ports:
-      - "10051:10051"
+      - 10051:10051
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -38,7 +38,7 @@ services:
           - zabbix-server-mysql
           - zabbix-server-alpine-mysql
           - zabbix-server-mysql-alpine
-      zbx_net_frontend:
+      zbx_net_frontend: null
     stop_grace_period: 30s
     sysctls:
       - net.ipv4.ip_local_port_range=1024 65000
@@ -46,24 +46,23 @@ services:
       - net.ipv4.conf.all.secure_redirects=0
       - net.ipv4.conf.all.send_redirects=0
     labels:
-      com.zabbix.description: "Zabbix server with MySQL database support"
-      com.zabbix.company: "Zabbix LLC"
-      com.zabbix.component: "zabbix-server"
-      com.zabbix.dbtype: "mysql"
-      com.zabbix.os: "alpine"
-
+      com.zabbix.description: Zabbix server with MySQL database support
+      com.zabbix.company: Zabbix LLC
+      com.zabbix.component: zabbix-server
+      com.zabbix.dbtype: mysql
+      com.zabbix.os: alpine
   zabbix-web:
     image: zabbix/zabbix-web-nginx-mysql:alpine-7.4-latest
     container_name: zabbix-web
     restart: always
     ports:
-      - "8443:8443"
+      - 8443:8443
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - ./zbx_env/etc/ssl/nginx:/etc/ssl/nginx:ro
       - ./zbx_env/usr/share/zabbix/modules/:/usr/share/zabbix/modules/:ro
-      - ./zbx_env/etc/nginx/nginx_ssl.conf:/etc/nginx/http.d/nginx_ssl.conf
+      #- ./zbx_env/etc/nginx/nginx_ssl.conf:/etc/nginx/http.d/nginx_ssl.conf
     deploy:
       resources:
         limits:
@@ -76,11 +75,16 @@ services:
     secrets:
       - MYSQL_USER
       - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
     depends_on:
       - zabbix-mysql
       - zabbix-server
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:8080/
       interval: 10s
       timeout: 5s
       retries: 3
@@ -88,21 +92,20 @@ services:
     networks:
       zbx_net_backend:
         aliases:
-        - zabbix-web-nginx-mysql
-        - zabbix-web-nginx-alpine-mysql
-        - zabbix-web-nginx-mysql-alpine
-      zbx_net_frontend:
+          - zabbix-web-nginx-mysql
+          - zabbix-web-nginx-alpine-mysql
+          - zabbix-web-nginx-mysql-alpine
+      zbx_net_frontend: null
     stop_grace_period: 10s
     sysctls:
-    - net.core.somaxconn=65535
+      - net.core.somaxconn=65535
     labels:
-      com.zabbix.description: "Zabbix frontend on Nginx web-server with MySQL database support"
-      com.zabbix.company: "Zabbix LLC"
-      com.zabbix.component: "zabbix-frontend"
-      com.zabbix.webserver: "nginx"
-      com.zabbix.dbtype: "mysql"
-      com.zabbix.os: "alpine"
-
+      com.zabbix.description: Zabbix frontend on Nginx web-server with MySQL database support
+      com.zabbix.company: Zabbix LLC
+      com.zabbix.component: zabbix-frontend
+      com.zabbix.webserver: nginx
+      com.zabbix.dbtype: mysql
+      com.zabbix.os: alpine
   zabbix-mysql:
     image: mariadb:11.5
     container_name: zabbix-mysql
@@ -125,16 +128,15 @@ services:
     networks:
       zbx_net_backend:
         aliases:
-        - mysql-server
-        - zabbix-database
-        - mysql-databasse
-
+          - mysql-server
+          - zabbix-database
+          - mysql-databasse
   zabbix-agent:
     image: zabbix/zabbix-agent:alpine-7.4-latest
     container_name: zabbix-agent
     restart: always
     ports:
-      - "10050:10050"
+      - 10050:10050
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -149,10 +151,9 @@ services:
     networks:
       zbx_net_backend:
         aliases:
-        - zabbix-agent
-        - zabbix-agent-passive
-        - zabbix-agent-alpine
-
+          - zabbix-agent
+          - zabbix-agent-passive
+          - zabbix-agent-alpine
 networks:
   zbx_net_frontend:
     driver: bridge
@@ -162,7 +163,7 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: 172.16.238.0/24
+        - subnet: 172.16.238.0/24
   zbx_net_backend:
     driver: bridge
     enable_ipv6: false
@@ -172,11 +173,9 @@ networks:
     ipam:
       driver: default
       config:
-      - subnet: 172.16.239.0/24
-
+        - subnet: 172.16.239.0/24
 volumes:
-  snmptraps:
-
+  snmptraps: null
 secrets:
   MYSQL_USER:
     file: ./env_vars/.MYSQL_USER
