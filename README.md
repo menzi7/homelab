@@ -32,6 +32,11 @@ Admittedly, usage of "all" describe the end goal of this repo, not the current s
 - [Zabbix](https://www.zabbix.com/): Monitoring, visualization and alerts.
 - [Fortinet](https://www.fortinet.com/): Network logs.
 
+### Smart Home
+
+- [HomeAssistant](https://www.home-assistant.io/): Smart home automation and control.
+- [Mealie](https://mealie.io/): Recipe manager and meal planner.
+
 ---
 
 ## 📂 Repository structure
@@ -41,6 +46,7 @@ Overview of this repo's structure:
 ```sh
 📁 containers     # Docker applications
 ├──📁 HomeAssistant      # Configuration(s) for HomeAssistant
+├──📁 Mealie             # Configuration(s) for Mealie
 ├──📁 PiHole             # Configuration(s) for PiHole
 ├──📁 UnifiController    # Configuration(s) for UnifiController
 ├──📁 Vaultwarden        # Configuration(s) for Vaultwarden
@@ -66,10 +72,10 @@ Overview of this repo's structure:
 
 ### Internet
 
-| Provider | Plan             | Speed (Down) | Speed (Up) | Latency | Cost       |
-| -------- | ---------------- | ------------ | -----------| ------- | -----------|
-| Norlys   | Fiber 300 Basic  | 300 Mbps     | 300 Mbps   | ~ 10ms  | Free*      |
-|          |                  |              |            |         | Total: N/A |
+| Provider | Plan              | Speed (Down) | Speed (Up) | Latency | Cost              |
+| -------- | ----------------- | ------------ | -----------| ------- | ----------------- |
+| Norlys   | Fiber 1000 Basic  | 1000 Mbps    | 1000 Mbps  | ~ 10ms  | DKK 369/mo        |
+|          |                   |              |            |         | Total: DKK 369/mo |
 
 *Cost covered by my employer, but would otherwise be about DKK 300/mo
 
@@ -96,6 +102,7 @@ Overview of this repo's structure:
 | ----- | ------------------------| -------------- | -------------- | -------------- | -------------------- |
 | 1     | FortiGate 60F           | 10x 1G         | N/A            | FortiOS        | Firewall and Router  |
 | 1     | Aruba 2530 24G PoE+     | 24x 1G         | 4x 1G          | ArubaOS-Switch | L2 PoE+ Switch       |
+| 1     | Ubiquiti Unifi U7 Pro   | 1x 2.5G        | N/A            | UniFi OS       | WiFi 7 Access Point  |
 | 1     | Ubiquiti Unifi U6+      | 1x 1G          | N/A            | UniFi OS       | WiFi 6 Access Point  |
 
 ---
